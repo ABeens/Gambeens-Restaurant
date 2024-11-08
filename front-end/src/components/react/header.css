@@ -1,0 +1,128 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-header {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+.menu-btn {
+    display: block;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1002;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-btn__burger {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu-btn__burger::before,
+.menu-btn__burger::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu-btn__burger::before {
+    transform: translateY(-10px);
+}
+
+.menu-btn__burger::after {
+    transform: translateY(10px);
+}
+
+.menu-toggle:checked ~ .menu-btn .menu-btn__burger {
+    transform: translateX(-50px);
+    background: transparent;
+}
+
+.menu-toggle:checked ~ .menu-btn .menu-btn__burger::before {
+    transform: rotate(45deg) translate(35px, -35px);
+}
+
+.menu-toggle:checked ~ .menu-btn .menu-btn__burger::after {
+    transform: rotate(-45deg) translate(35px, 35px);
+}
+
+.menu {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    background-color: black;
+    color: white;
+    transition: transform 0.3s ease-in-out;
+    z-index: 999;
+    transform: translateY(-100%);
+    overflow-y: auto;
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 20px 0;
+    margin: 0;
+    text-align: center;
+}
+
+.menu ul li {
+    padding: 10px 20px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+    display: inline-block;
+    width: 100%;
+}
+
+.menu-toggle:checked ~ .menu {
+    transform: translateY(0);
+}
+
+/* Nuevo: maneja el cierre del menú */
+.menu-link:target {
+    animation: closeMenu 1s forwards;
+}
+
+[id] {
+    scroll-margin-top: 80px; 
+  }

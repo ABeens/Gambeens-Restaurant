@@ -1,0 +1,10 @@
+---
+import { MenuBuilder } from "@/components/react/manager/MenuBuilder";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+		<MenuBuilder client:load/>
+	</main>
+</Layout>
