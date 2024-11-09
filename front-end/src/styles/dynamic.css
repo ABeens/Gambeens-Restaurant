@@ -1,0 +1,106 @@
+/* Default */
+.default-bg {
+    background-color: white;
+}
+
+.default-text {
+    color: black;
+}
+
+.default-icon,
+.default-icon::before,
+.default-icon::after {
+    background-color: black;
+}
+
+/* Dark */
+.dark-bg {
+    background-color: black;
+}
+
+.dark-text {
+    color: #fffbeb;
+}
+
+.dark-icon,
+.dark-icon::before,
+.dark-icon::after {
+    background-color: #fffbeb;
+}
+
+/*Elegante*/
+.elegant-bg {
+    background-color: #111827;
+}
+
+.elegant-text {
+    color:  #fbbf24;
+}
+
+.elegant-icon,
+.elegant-icon::before,
+.elegant-icon::after {
+
+    background-color:  #fbbf24;
+
+}
+
+/*Olive*/
+.olive-bg {
+    background-color: #ecfdf5;
+}
+
+.olive-text {
+    color: #064e3b;
+}
+
+.olive-icon,
+.olive-icon::before,
+.olive-icon::after {
+    background-color: #064e3b;
+}
+
+/* Noon */
+.noon-bg {
+    background-color: #ffedd5;
+}
+
+.noon-text {
+    color: #1c1917;
+}
+
+.noon-icon,
+.noon-icon::before,
+.noon-icon::after {
+    background-color: #1c1917;
+}
+
+/* Modern */
+.modern-bg {
+    background-color: #f1f5f9;
+}
+
+.modern-text {
+    color: #0f172a;
+}
+
+.modern-icon,
+.modern-icon::before,
+.modern-icon::after {
+    background-color: #0f172a;
+}
+
+/* Rustic */
+.rustic-bg {
+    background-color: #e7e5e4;
+}
+
+.rustic-text {
+    color: #1c1917;
+}
+
+.rustic-icon,
+.rustic-icon::before,
+.rustic-icon::after {
+    background-color: #1c1917;
+}

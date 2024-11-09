@@ -1,6 +1,7 @@
 import { useState } from "react";
 import './header.css';
-import type { MenuStyle } from "@/services/menuService";
+import type { MenuStyle } from "@/types/interfaces";
+import "@styles/dynamic.css";
 
 interface Props {
     categories: string[],
@@ -28,8 +29,8 @@ export const DynamicMenuHeader = (props: Props) => {
     }
 
     return (
-        <div>
-            <header className={`navbar-header ${props!.menuStyle!.colorScheme!.background}`}>
+        <div className={`${props!.menuStyle!.colorScheme!.background}`}>
+            <header className={`navbar-header ${props!.menuStyle!.colorScheme!.background} ${props!.menuStyle!.colorScheme!.text}`}>
                 <h1>Template</h1>
             </header>
 
@@ -42,9 +43,9 @@ export const DynamicMenuHeader = (props: Props) => {
                 className="menu-toggle" 
             />
             <label htmlFor="menu-toggle" className="menu-btn">
-                <div className="menu-btn__burger"></div>
+                <div className={`menu-btn__burger ${props!.menuStyle!.colorScheme!.baseIcons}`}></div>
             </label>
-            <nav className={`menu ${props!.menuStyle!.colorScheme!.background}`}>
+            <nav className={`menu ${props!.menuStyle!.colorScheme!.background} ${props!.menuStyle!.colorScheme!.text}`}>
                 <ul>
                     {props.categories.map((category) => {
                         return (

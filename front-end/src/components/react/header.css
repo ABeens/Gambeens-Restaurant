@@ -56,7 +56,6 @@ body {
     position: absolute;
     width: 30px;
     height: 3px;
-    background-color: white;
     transition: all 0.3s ease-in-out;
 }
 
@@ -68,16 +67,16 @@ body {
     transform: translateY(10px);
 }
 
-.menu-toggle:checked ~ .menu-btn .menu-btn__burger {
+.menu-toggle:checked~.menu-btn .menu-btn__burger {
     transform: translateX(-50px);
     background: transparent;
 }
 
-.menu-toggle:checked ~ .menu-btn .menu-btn__burger::before {
+.menu-toggle:checked~.menu-btn .menu-btn__burger::before {
     transform: rotate(45deg) translate(35px, -35px);
 }
 
-.menu-toggle:checked ~ .menu-btn .menu-btn__burger::after {
+.menu-toggle:checked~.menu-btn .menu-btn__burger::after {
     transform: rotate(-45deg) translate(35px, 35px);
 }
 
@@ -87,8 +86,6 @@ body {
     left: 0;
     width: 100%;
     height: auto;
-    background-color: black;
-    color: white;
     transition: transform 0.3s ease-in-out;
     z-index: 999;
     transform: translateY(-100%);
@@ -108,13 +105,12 @@ body {
 
 .menu ul li a {
     text-decoration: none;
-    color: white;
     font-size: 1.2em;
     display: inline-block;
     width: 100%;
 }
 
-.menu-toggle:checked ~ .menu {
+.menu-toggle:checked~.menu {
     transform: translateY(0);
 }
 
@@ -124,5 +120,5 @@ body {
 }
 
 [id] {
-    scroll-margin-top: 80px; 
-  }
+    scroll-margin-top: 80px;
+}

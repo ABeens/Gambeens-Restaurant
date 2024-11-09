@@ -1,50 +1,15 @@
-interface Menu {
-    id: string;
-    imageUrl: string;
-    categories: Category[];
-    style: MenuStyle;
-}
-
-export type ColorSchemeTitle = 'default' | 'sunset' | 'forest' | 'ocean'
-
-export interface ColorStyleScheme {
-    background: string;
-    text: string;
-}
-export interface MenuStyle {
-    colorScheme?: ColorStyleScheme;
-}
-
-interface Category {
-    id: string;
-    description: string;
-    topImageUrl: string;
-    auxiliarImages: string[];
-    dishes: Dish[];
-}
-
-interface Dish {
-    id: string;
-    title: string;
-    description: string;
-    price: string;
-}
-
+import type { Category, Menu, MenuStyle } from "@/types/interfaces";
+import { colorSchemes, type ColorSchemes } from "@/types/types";
 
 // Generar el menú con categorías y platos
 export const getMenuById = (): Menu => {
     const basePath = import.meta.env.BASE_URL;
-    const colorSchemes = {
-        default: { background: 'bg-black', text: 'white' },
-        sunset: { background: 'bg-orange-500', text: 'white' },
-        forest: { background: 'bg-black', text: 'white' },
-        ocean: { background: 'bg-black', text: 'white' },
-    }
-
+    const theme: ColorSchemes = 'elegant';
     const css: MenuStyle = {
         colorScheme: {
-            background: colorSchemes['default'].background,
-            text: colorSchemes['default'].text
+            background: colorSchemes[theme].background,
+            text: colorSchemes[theme].text,
+            baseIcons:colorSchemes[theme].baseIcons
         }
     }
 
