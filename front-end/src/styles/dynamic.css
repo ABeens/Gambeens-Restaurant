@@ -92,15 +92,15 @@
 
 /* Rustic */
 .rustic-bg {
-    background-color: #e7e5e4;
+    background-color: #32261e;
 }
 
 .rustic-text {
-    color: #1c1917;
+    color: #fffbeb;
 }
 
 .rustic-icon,
 .rustic-icon::before,
 .rustic-icon::after {
-    background-color: #1c1917;
+    background-color: #fffbeb;
 }

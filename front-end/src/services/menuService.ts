@@ -4,7 +4,7 @@ import { colorSchemes, type ColorSchemes } from "@/types/types";
 // Generar el menú con categorías y platos
 export const getMenuById = (): Menu => {
     const basePath = import.meta.env.BASE_URL;
-    const theme: ColorSchemes = 'elegant';
+    const theme: ColorSchemes = 'rustic';
     const css: MenuStyle = {
         colorScheme: {
             background: colorSchemes[theme].background,
