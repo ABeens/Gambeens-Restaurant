@@ -1,5 +1,7 @@
 export interface Menu {
     id: string;
+    name:string;
+    lang:string;
     imageUrl: string;
     categories: Category[];
     style: MenuStyle;
@@ -17,8 +19,8 @@ export interface MenuStyle {
 
 export interface Category {
     id: string;
-    description: string;
-    topImageUrl: string;
+    name:string;
+    description?: string;
     auxiliarImages: string[];
     dishes: Dish[];
 }
@@ -30,3 +32,13 @@ export interface Dish {
     price: string;
 }
 
+export const getDefaultCategory=()=>{
+    return {
+        id:'',
+        description:'',
+        name:'',
+        topImageUrl:'',
+        auxiliarImages:[],
+        dishes:[]
+    }
+}

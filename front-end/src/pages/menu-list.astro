@@ -1,0 +1,10 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import MenuListComponent from "@/components/react/manager/MenuListComponent";
+const basePath = import.meta.env.BASE_URL;
+
+---
+
+<Layout>
+  <MenuListComponent client:load basePath={basePath}/>
+</Layout>

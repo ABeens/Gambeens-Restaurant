@@ -1,10 +1,10 @@
 import { useState } from "react";
 import './header.css';
-import type { MenuStyle } from "@/types/interfaces";
+import type { Menu, MenuStyle } from "@/types/interfaces";
 import "@styles/dynamic.css";
 
 interface Props {
-    categories: string[],
+    menu: Menu,
     menuStyle:MenuStyle
 }
 
@@ -31,7 +31,7 @@ export const DynamicMenuHeader = (props: Props) => {
     return (
         <div className={`${props!.menuStyle!.colorScheme!.background}`}>
             <header className={`navbar-header ${props!.menuStyle!.colorScheme!.background} ${props!.menuStyle!.colorScheme!.text}`}>
-                <h1>Template</h1>
+                <h1>{props.menu.name}</h1>
             </header>
 
             <input 
@@ -47,14 +47,14 @@ export const DynamicMenuHeader = (props: Props) => {
             </label>
             <nav className={`menu ${props!.menuStyle!.colorScheme!.background} ${props!.menuStyle!.colorScheme!.text}`}>
                 <ul>
-                    {props.categories.map((category) => {
+                    {props!.menu!.categories!.map((category) => {
                         return (
-                            <li key={category}>
+                            <li key={category.id}>
                                 <a 
-                                    href={`#${category}`} 
-                                    onClick={() => handleCategoryClick(category)}
+                                    href={`#${category.id}`} 
+                                    onClick={() => handleCategoryClick(category.id)}
                                 >
-                                    {category}
+                                    {category.description}
                                 </a>
                             </li>
                         );

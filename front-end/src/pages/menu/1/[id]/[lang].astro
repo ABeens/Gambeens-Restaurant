@@ -1,27 +1,18 @@
 ---
 import Footer from "@/components/Footer.astro";
-import {DynamicMenuHeader} from "@/components/react/DynamicMenuHeader";
+import { DynamicMenuHeader } from "@/components/react/DynamicMenuHeader";
+import { getMenuList } from "@services/menuService";
 import { getMenuById } from "@services/menuService";
 import "@styles/globals.css";
 const basePath = import.meta.env.BASE_URL;
 export async function getStaticPaths() {
-  const menus = [
-    {
-      id: "base",
-      lang: "es",
-    },
-    {
-      id: "base",
-      lang: "en",
-    },
-  ];
-
-  return menus.map((item) => ({
+  const menuList = await getMenuList();
+  return menuList.map((item) => ({
     params: { id: item.id, lang: item.lang },
   }));
 }
 const { id, lang } = Astro.params;
-const clientMenu = await getMenuById();
+const clientMenu = await getMenuById(id);
 ---
 
 <html>
@@ -31,12 +22,17 @@ const clientMenu = await getMenuById();
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
       charset="UTF-8"
     />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href={`${basePath}/my-menu-logo.png`}
+    />
   </head>
   <body class=`${clientMenu!.style!.colorScheme!.background} px-3 w-100`>
     <DynamicMenuHeader
-    client:load
-    menuStyle={clientMenu.style}
-      categories={clientMenu.categories.map((category) => category.description)}
+      client:load
+      menuStyle={clientMenu.style}
+      menu={clientMenu}
     />
     {clientMenu.categories}
     <img src=`${clientMenu.imageUrl}` class="w-full h-75vh object-cover" />
@@ -44,16 +40,16 @@ const clientMenu = await getMenuById();
       clientMenu.categories.map((category) => {
         return (
           <div
-            id={`${category.description}`}
+            id={`${category.id}`}
             class="my-10 w-full md:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-0 mx-auto"
           >
             <div class="py-6 px-4 bg-white border border-gray-200 rounded-lg shadow">
               <img
-                src={`${category.topImageUrl}`}
+                src={`${category.auxiliarImages[0]}`}
                 class="w-full h-36 object-cover"
               />
               <h2 class="text-4xl text-bold mb-3 uppercase">
-                {category.description}
+                {category.name}
               </h2>
               <div class="grid grid-cols-1 divide-y">
                 {category.dishes.map((dish) => {
@@ -75,20 +71,18 @@ const clientMenu = await getMenuById();
               </div>
             </div>
             <div class="row-end my-auto">
-              <img
-                src={`${basePath}/1-alt.jpg`}
-                class="w-full h-60 object-cover"
-              />
-              <img
-                src={`${basePath}/2-alt.jpg`}
-                class="w-full h-60 object-cover"
-              />
+              {category?.auxiliarImages?.map((auxImage) => (
+                <img
+                  src={`${auxImage}`}
+                  class="w-full h-60 object-cover"
+                />
+              ))}
             </div>
           </div>
         );
       })
     }
-    <Footer menuStyle={clientMenu.style}/>
+    <Footer menuStyle={clientMenu.style} />
   </body>
 </html>
 <style>

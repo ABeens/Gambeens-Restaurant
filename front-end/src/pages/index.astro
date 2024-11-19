@@ -1,10 +1,13 @@
 ---
-import { MenuBuilder } from "@/components/react/manager/MenuBuilder";
+import MenuBuilder from "@/components/react/manager/MenuBuilderComponent";
 import Layout from "../layouts/Layout.astro";
+import MenuList from "@/components/react/manager/MenuListComponent";
+const basePath = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<MenuBuilder client:load/>
+		<MenuList client:load basePath={basePath}/>
+		<!-- <MenuBuilder client:load/> -->
 	</main>
 </Layout>

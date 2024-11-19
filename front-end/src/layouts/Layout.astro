@@ -1,22 +1,176 @@
 ---
-interface Props {
-	title: string;
-}
+import "@styles/globals.css";
 const basePath = import.meta.env.BASE_URL;
 const { title } = Astro.props;
+
+// Obtener la ruta actual
+const currentPath = Astro.url.pathname;
+
+// Función para determinar si una ruta está activa
+const isActive = (path:string) => currentPath === path;
 ---
 
-<!doctype html>
-<html lang="en">
+<html>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href=`${basePath}/favicon.svg` />
+		<link rel="icon" type="image/svg+xml" href={`${basePath}/my-menu-logo.png`} />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<header class="header">
+			<div class="container">
+				<div class="logo">
+					<a href="/">
+						<img
+							src={`${basePath}/my-menu-logo.png`}
+							alt="Your Company Logo"
+							width="120"
+							height="40"
+						/>
+					</a>
+				</div>
+				<input type="checkbox" id="menu-toggle" class="menu-toggle" />
+				<label for="menu-toggle" class="menu-icon">
+					<span></span>
+					<span></span>
+					<span></span>
+				</label>
+				<nav class="navigation">
+					<ul>
+						<li>
+							<a href={`${basePath}`} class={isActive(`${basePath}`) ? 'active' : ''}>Inicio</a>
+						</li>
+						<li>
+							<a href={`${basePath}new-menu`} class={isActive(`${basePath}new-menu`) ? 'active' : ''}>Creador de menú</a>
+						</li>
+						<li>
+							<a href={`${basePath}contact`} class={isActive(`${basePath}contact`) ? 'active' : ''}>Contacto</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<main class="main-content">
+			<slot />
+		</main>
+
+		<style>
+						.header {
+				background-color: #ffffff;
+				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				z-index: 1000;
+			}
+			.container {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 1rem;
+				max-width: 1200px;
+				margin: 0 auto;
+			}
+			.logo img {
+				display: block;
+			}
+			.navigation ul {
+				display: flex;
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			.navigation ul li:not(:last-child) {
+				margin-right: 1.5rem;
+			}
+			.navigation ul li a {
+				color: #333;
+				text-decoration: none;
+				font-weight: 500;
+				transition: color 0.3s ease;
+			}
+			.navigation ul li a:hover {
+				color: #007bff;
+			}
+			.menu-toggle {
+				display: none;
+			}
+			.menu-icon {
+				display: none;
+				cursor: pointer;
+				padding: 10px;
+			}
+			.menu-icon span {
+				display: block;
+				width: 25px;
+				height: 3px;
+				background-color: #333;
+				margin: 5px 0;
+				transition: all 0.3s ease;
+			}
+			.main-content {
+				padding-top: 80px; /* Adjust this value based on your header height */
+				max-width: 1200px;
+				margin: 0 auto;
+				padding-left: 1rem;
+				padding-right: 1rem;
+			}
+			@media (max-width: 768px) {
+				.navigation {
+					position: absolute;
+					top: 100%;
+					left: 0;
+					right: 0;
+					background-color: #ffffff;
+					box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+					max-height: 0;
+					overflow: hidden;
+					transition: max-height 0.3s ease;
+				}
+				.navigation ul {
+					flex-direction: column;
+					padding: 1rem;
+				}
+				.navigation ul li:not(:last-child) {
+					margin-right: 0;
+					margin-bottom: 1rem;
+				}
+				.menu-icon {
+					display: block;
+				}
+				.menu-toggle:checked ~ .navigation {
+					max-height: 300px;
+				}
+				.menu-toggle:checked ~ .menu-icon span:nth-child(1) {
+					transform: rotate(45deg) translate(5px, 5px);
+				}
+				.menu-toggle:checked ~ .menu-icon span:nth-child(2) {
+					opacity: 0;
+				}
+				.menu-toggle:checked ~ .menu-icon span:nth-child(3) {
+					transform: rotate(-45deg) translate(7px, -7px);
+				}
+			}
+			/* Otros estilos */
+			.navigation ul li a {
+				color: #333;
+				text-decoration: none;
+				font-weight: 500;
+				transition: color 0.3s ease;
+			}
+			.navigation ul li a:hover {
+				color: #007bff;
+			}
+			/* Estilo para la opción activa */
+			.navigation ul li a.active {
+				color: #007bff;
+				font-weight: bold;
+			}
+		</style>
 	</body>
 </html>

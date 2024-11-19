@@ -1,0 +1,17 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import MenuBuilderComponent from "@/components/react/manager/MenuBuilderComponent";
+import { getMenuById, getMenuList } from "@/services/menuService";
+export async function getStaticPaths() {
+  const menuList = await getMenuList();
+  return menuList.map((item) => ({
+    params: { id: item.id },
+  }));
+}
+const { id } = Astro.params;
+const clientMenu = await getMenuById(id ?? '');
+---
+
+<Layout>
+  <MenuBuilderComponent client:load menu={clientMenu}/>
+</Layout>
