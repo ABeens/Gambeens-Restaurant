@@ -31,13 +31,13 @@ const clientMenu = await getMenuById(id);
   <body class=`${clientMenu!.style!.colorScheme!.background} px-3 w-100`>
     <DynamicMenuHeader
       client:load
-      menuStyle={clientMenu.style}
-      menu={clientMenu}
+      menuStyle={clientMenu!.style}
+      menu={clientMenu!}
     />
-    {clientMenu.categories}
-    <img src=`${clientMenu.imageUrl}` class="w-full h-75vh object-cover" />
+    {clientMenu!.categories}
+    <img src=`${clientMenu!.imageUrl}` class="w-full h-75vh object-cover" />
     {
-      clientMenu.categories.map((category) => {
+      clientMenu!.categories.map((category) => {
         return (
           <div
             id={`${category.id}`}
@@ -62,7 +62,7 @@ const clientMenu = await getMenuById(id);
                           alt=""
                           aria-hidden="true"
                         />
-                        {dish.title}
+                        {dish.name}
                       </p>
                       <p class="text-gray-600">{dish.description}</p>
                     </div>
@@ -82,7 +82,7 @@ const clientMenu = await getMenuById(id);
         );
       })
     }
-    <Footer menuStyle={clientMenu.style} />
+    <Footer menuStyle={clientMenu!.style} />
   </body>
 </html>
 <style>
